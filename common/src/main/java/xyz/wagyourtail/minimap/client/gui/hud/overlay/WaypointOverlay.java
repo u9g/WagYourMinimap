@@ -68,7 +68,7 @@ public class WaypointOverlay extends AbstractMinimapOverlay {
             }
             int abgr = 0xFF000000 | point.colB & 0xFF << 0x10 | point.colG & 0xFF << 0x8 | point.colR & 0xFF;
             AbstractMapRenderer.drawTexCol(stack, -10, -10, 20, 20, 0, 0, 1, 1, abgr);
-            if (true) {
+            if (scale >= 1) {
                 stack.drawString(minecraft.font, point.name, -minecraft.font.width(point.name) / 2, 10, 0xFFFFFF);
             }
             stack.pose().popPose();
