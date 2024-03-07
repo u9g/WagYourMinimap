@@ -31,9 +31,9 @@ public class InGameWaypointRenderer {
         stack.pose().pushPose();
         Vec3 center = camera.getPosition();
         boolean showBeam = MinimapClientApi.getInstance().getConfig().get(MinimapClientConfig.class).showWaypointBeam;
-        for (Waypoint visibleWaypoint : MinimapClientApi.getInstance().getMapServer().waypoints.getVisibleWaypoints()) {
+        for (Waypoint visibleWaypoint : MinimapClientApi.getInstance().getMapServer().waypoints.getAllWaypoints()) {
             //move center to waypoint
-            assert mc.level != null;
+            if (mc.level == null) continue;
             BlockPos pos = visibleWaypoint.posForCoordScale(mc.level.dimensionType().coordinateScale());
             Vec3 offset = new Vec3(pos.getX() + .5f, pos.getY() + .5f, pos.getZ() + .5f).subtract(center);
             double xz = Math.sqrt(offset.x * offset.x + offset.z * offset.z);
@@ -91,11 +91,11 @@ public class InGameWaypointRenderer {
         RenderSystem.setShaderTexture(0, waypoint.getIcon());
         int abgr = 0xFF000000 | waypoint.colB & 0xFF << 0x10 | waypoint.colG & 0xFF << 0x8 | waypoint.colR & 0xFF;
         AbstractMapRenderer.drawTexCol(stack, -10, -10, 20, 20, 0, 0, 1, 1, abgr);
-        if (isLookingAt(
+        if (/*isLookingAt(
             offset.normalize(),
             mc.gameRenderer.getMainCamera().getXRot(),
             mc.gameRenderer.getMainCamera().getYRot()
-        )) {
+        )*/ true) {
             drawText(stack, String.format("%s (%.2f m)", waypoint.name, offset.distanceTo(Vec3.ZERO)));
         }
     }
