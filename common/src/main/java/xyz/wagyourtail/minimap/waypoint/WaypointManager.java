@@ -8,6 +8,8 @@ import xyz.wagyourtail.minimap.waypoint.filters.DimensionFilter;
 import xyz.wagyourtail.minimap.waypoint.filters.DistanceFilter;
 import xyz.wagyourtail.minimap.waypoint.filters.EnabledFilter;
 import xyz.wagyourtail.minimap.waypoint.filters.WaypointFilter;
+import xyz.wagyourtail.minimap.waypoint.Waypoint;
+import net.minecraft.resources.ResourceLocation;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -51,6 +53,14 @@ public class WaypointManager {
             return null;
         }).filter(Objects::nonNull).collect(Collectors.toList()));
         compileFilter();
+    }
+
+    public static Map<String, ResourceLocation> waypointIcons() {
+        return Waypoint.waypoint_tex
+    }
+
+    public static ResourceLocation makeResourceLocation(String a, String b) {
+        return new ResourceLocation(a, b);
     }
 
     private static void compileFilter() {
