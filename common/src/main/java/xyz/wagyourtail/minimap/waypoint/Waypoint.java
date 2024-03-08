@@ -20,7 +20,7 @@ public class Waypoint {
         WagYourMinimap.MOD_ID,
         "textures/waypoint.png"
     );
-    public static final Map<String, ResourceLocation> waypoint_tex = new HashMap<>(Map.of(
+    public static Map<String, ResourceLocation> waypoint_tex = new HashMap<>(Map.of(
         "default", default_waypoint_tex,
         "skull", new ResourceLocation(WagYourMinimap.MOD_ID, "textures/waypoint_skull.png")
     ));
