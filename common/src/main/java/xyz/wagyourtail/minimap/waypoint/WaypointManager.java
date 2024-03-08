@@ -55,11 +55,11 @@ public class WaypointManager {
         compileFilter();
     }
 
-    public static Map<String, ResourceLocation> waypointIcons() {
+    public Map<String, ResourceLocation> waypointIcons() {
         return Waypoint.waypoint_tex;
     }
 
-    public static ResourceLocation makeResourceLocation(String a, String b) {
+    public ResourceLocation makeResourceLocation(String a, String b) {
         return new ResourceLocation(a, b);
     }
 
