@@ -56,7 +56,7 @@ public class WaypointManager {
     }
 
     public static Map<String, ResourceLocation> waypointIcons() {
-        return Waypoint.waypoint_tex
+        return Waypoint.waypoint_tex;
     }
 
     public static ResourceLocation makeResourceLocation(String a, String b) {
