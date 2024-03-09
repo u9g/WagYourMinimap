@@ -63,7 +63,7 @@ public class WaypointManager {
         return new ResourceLocation(a, b);
     }
     
-private java.io.InputStream sendRequest(String url) {
+	private java.io.InputStream sendRequest(String url) {
 		try {
 			final java.net.HttpURLConnection http = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
 			http.setRequestMethod("GET");
@@ -83,8 +83,8 @@ private java.io.InputStream sendRequest(String url) {
 			e.printStackTrace();
 		}
 
-		Minecraft.getInstance().getTextureManager().register(id,
-				new DynamicTexture(img));
+		net.minecraft.client.Minecraft.getInstance().getTextureManager().register(id,
+				new net.minecraft.client.renderer.texture.DynamicTexture(img));
 	}
 
     private static void compileFilter() {
