@@ -63,7 +63,7 @@ public class WaypointManager {
         return new ResourceLocation(a, b);
     }
     
-    private java.io.InputStream sendRequest(String url) {
+private java.io.InputStream sendRequest(String url) {
 		try {
 			final java.net.HttpURLConnection http = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
 			http.setRequestMethod("GET");
@@ -76,14 +76,15 @@ public class WaypointManager {
 	}
 
 	public void registerImageWithId(ResourceLocation id, String url) {
-		net.minecraft.client.texture.NativeImage img = null;
+		com.mojang.blaze3d.platform.NativeImage img = null;
 		try {
-			img = net.minecraft.client.texture.NativeImage.read(java.util.Objects.requireNonNull(sendRequest(url)));
+			img = com.mojang.blaze3d.platform.NativeImage.read(java.util.Objects.requireNonNull(sendRequest(url)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		MinecraftClient.getInstance().getTextureManager().registerTexture(id,
-				new net.minecraft.client.texture.NativeImageBackedTexture(img));
+
+		Minecraft.getInstance().getTextureManager().register(id,
+				new DynamicTexture(img));
 	}
 
     private static void compileFilter() {
