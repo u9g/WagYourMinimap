@@ -62,6 +62,29 @@ public class WaypointManager {
     public ResourceLocation makeResourceLocation(String a, String b) {
         return new ResourceLocation(a, b);
     }
+    
+    private java.io.InputStream sendRequest(String url) {
+		try {
+			final java.net.HttpURLConnection http = (java.net.HttpURLConnection) new java.net.URL(url).openConnection();
+			http.setRequestMethod("GET");
+			http.setDoOutput(true);
+			return http.getInputStream();
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void registerImageWithId(ResourceLocation id, String url) {
+		net.minecraft.client.texture.NativeImage img = null;
+		try {
+			img = net.minecraft.client.texture.NativeImage.read(java.util.Objects.requireNonNull(sendRequest(url)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		MinecraftClient.getInstance().getTextureManager().registerTexture(id,
+				new net.minecraft.client.texture.NativeImageBackedTexture(img));
+	}
 
     private static void compileFilter() {
         Iterator<WaypointFilter> iterator = filters.iterator();
